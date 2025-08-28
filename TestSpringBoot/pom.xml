@@ -45,6 +45,12 @@
             <artifactId>lombok</artifactId>
             <scope>annotationProcessor</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -55,22 +61,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>env_dev</id>
-            <properties>
-                <profile.active>dev</profile.active>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>		<!--默认启动环境-->
-            </activation>
-        </profile>
-        <profile>
-            <id>env_pro</id>
-            <properties>
-                <profile.active>pro</profile.active>
-            </properties>
-        </profile>
-    </profiles>
 </project>

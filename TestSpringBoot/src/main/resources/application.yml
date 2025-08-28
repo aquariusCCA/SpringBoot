@@ -1,3 +1,5 @@
 spring:
-  profiles:
-    include: @profile.active@
+  devtools:
+    restart:
+      exclude: "com/test/controller/**"
+#      enabled: false
