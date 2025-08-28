@@ -13,6 +13,7 @@ public class BookController{
 
     @GetMapping
     public String getById(){
+        System.out.println("getBook");
         return "springboot is running...";
     }
 }

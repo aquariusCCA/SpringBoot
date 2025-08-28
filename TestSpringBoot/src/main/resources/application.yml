@@ -1,2 +1,8 @@
-servers:
-  port: 99999
+testcase:
+  book:
+    id: ${random.int}
+    id2: ${random.int(10)}
+    type: ${random.int!5,10!}
+    name: ${random.value}
+    uuid: ${random.uuid}
+    publishTime: ${random.long}
