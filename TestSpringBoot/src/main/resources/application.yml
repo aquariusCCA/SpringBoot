@@ -1,5 +1,2 @@
-spring:
-  devtools:
-    restart:
-      exclude: "com/test/controller/**"
-#      enabled: false
+servers:
+  port: 99999
