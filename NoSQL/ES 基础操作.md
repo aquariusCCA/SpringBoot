@@ -7,13 +7,48 @@ ES中保存有我们要查询的数据，只不过格式和数据库存储数据
 
 ​要操作ES可以通过Rest风格的请求来进行，也就是说发送一个请求就可以执行一个操作。比如新建索引，删除索引这些操作都可以使用发送请求的形式来进行。
 
+---
+
 # 创建索引
+
+打开`postman`，发送一个`PUT`请求，新建一个`books`索引
 
 books 是索引名称，下同
 
 ```shell
 # PUT请求		
 http://localhost:9200/books
+```
+
+请求参数
+
+```json
+{
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "keyword"
+            },
+            "name": {
+                "type": "text",
+                "analyzer": "ik_max_word",
+                "copy_to": "all"
+            },
+            "type": {
+                "type": "keyword"
+            },
+            "description": {
+                "type": "text",
+                "analyzer": "ik_max_word",
+                "copy_to": "all"
+            },
+            "all": {
+                "type": "text",
+                "analyzer": "ik_max_word"
+            }
+        }
+    }
+}
 ```
 
 发送请求后，看到如下信息即索引创建成功
@@ -30,21 +65,22 @@ http://localhost:9200/books
 
 ```json
 {
-  "error": {
-	  "root_cause": [
-		  {
-			  "type": "resource_already_exists_exception",
-			  "reason": "index [books/VgC_XMVAQmedaiBNSgO2-w] already exists",
-			  "index_uuid": "VgC_XMVAQmedaiBNSgO2-w",
-			  "index": "books"
-		  }
-	  ],
-	  "type": "resource_already_exists_exception",
-	  "reason": "index [books/VgC_XMVAQmedaiBNSgO2-w] already exists",	# books索引已经存在
-	  "index_uuid": "VgC_XMVAQmedaiBNSgO2-w",
-	  "index": "book"
-  },
-  "status": 400
+    "error": {
+        "root_cause": [
+            {
+                "type": "resource_already_exists_exception",
+                "reason": "index [books/HXWeMY63QSaHy_X2uYc6RQ] already exists",
+                "index_uuid": "HXWeMY63QSaHy_X2uYc6RQ",
+                "index": "books"
+            }
+        ],
+        "type": "resource_already_exists_exception",
+        # books索引已经存在
+        "reason": "index [books/HXWeMY63QSaHy_X2uYc6RQ] already exists",
+        "index_uuid": "HXWeMY63QSaHy_X2uYc6RQ",
+        "index": "books"
+    },
+    "status": 400
 }
 ```
 
@@ -103,7 +139,8 @@ http://localhost:9200/books
 		  }
 	  ],
 	  "type": "index_not_found_exception",
-	  "reason": "no such index [book]",		# 没有book索引
+	  # 没有book索引
+	  "reason": "no such index [book]",		
 	  "resource.type": "index_or_alias",
 	  "resource.id": "book",
 	  "index_uuid": "_na_",
@@ -146,7 +183,8 @@ http://localhost:9200/books
 		  }
 	  ],
 	  "type": "index_not_found_exception",
-	  "reason": "no such index [books]",		# 没有books索引
+	  # 没有books索引
+	  "reason": "no such index [books]",		
 	  "resource.type": "index_or_alias",
 	  "resource.id": "book",
 	  "index_uuid": "_na_",
@@ -162,99 +200,58 @@ http://localhost:9200/books
 
 前面创建的索引是未指定分词器的，可以在创建索引时添加请求参数，设置分词器。目前国内较为流行的分词器是IK分词器，使用前先在下对应的分词器，然后使用。
 
-IK分词器下载地址：https://github.com/medcl/elasticsearch-analysis-ik/releases
+IK分词器下载地址：[https://github.com/medcl/elasticsearch-analysis-ik/releases](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Fmedcl%2Felasticsearch-analysis-ik%2Freleases)
 
-分词器下载后解压到ES安装目录的 plugins 目录中即可，安装分词器后需要重新启动ES服务器。使用IK分词器创建索引格式：
+分词器下载后解压到ES安装目录的 plugins 目录中即可，安装分词器后需要重新启动ES服务器。
+
+在`es`的`plugin`目录下新建一个ik文件夹（建文件夹是为了方便管理），然后把下载好的`ik`分词器压缩包中的内容解压到 ik 目录下
+
+![[image-20220125165532370.png]]
+
+关闭当前`es`启动的黑窗口，去`es`的bin目录下，双击`elasticsearch.bat`，重新启动`es`
 
 ```shell
 # PUT请求		
 http://localhost:9200/books
 ```
 
-```json
-# 请求参数如下（注意是json格式的参数）
-{
-  "mappings":{							#定义mappings属性，替换创建索引时对应的mappings属性		
-	  "properties":{						#定义索引中包含的属性设置
-		  "id":{							#设置索引中包含id属性
-			  "type":"keyword"			#当前属性可以被直接搜索
-		  },
-		  "name":{						#设置索引中包含name属性
-			  "type":"text",              #当前属性是文本信息，参与分词  
-			  "analyzer":"ik_max_word",   #使用IK分词器进行分词             
-			  "copy_to":"all"				#分词结果拷贝到all属性中
-		  },
-		  "type":{
-			  "type":"keyword"
-		  },
-		  "description":{
-			  "type":"text",	                
-			  "analyzer":"ik_max_word",                
-			  "copy_to":"all"
-		  },
-		  "all":{							#定义属性，用来描述多个字段的分词结果集合，当前属性可以参与查询
-			  "type":"text",	                
-			  "analyzer":"ik_max_word"
-		  }
-	  }
-  }
-}
-```
-
-创建完毕后返回结果和不使用分词器创建索引的结果是一样的，此时可以通过查看索引信息观察到添加的请求参数mappings已经进入到了索引属性中
+请求参数如下
 
 ```json
 {
-  "books": {
-	  "aliases": {},
-	  "mappings": {						#mappings属性已经被替换
-		  "properties": {
-			  "all": {
-				  "type": "text",
-				  "analyzer": "ik_max_word"
-			  },
-			  "description": {
-				  "type": "text",
-				  "copy_to": [
-					  "all"
-				  ],
-				  "analyzer": "ik_max_word"
-			  },
-			  "id": {
-				  "type": "keyword"
-			  },
-			  "name": {
-				  "type": "text",
-				  "copy_to": [
-					  "all"
-				  ],
-				  "analyzer": "ik_max_word"
-			  },
-			  "type": {
-				  "type": "keyword"
-			  }
-		  }
-	  },
-	  "settings": {
-		  "index": {
-			  "routing": {
-				  "allocation": {
-					  "include": {
-						  "_tier_preference": "data_content"
-					  }
-				  }
-			  },
-			  "number_of_shards": "1",
-			  "provided_name": "books",
-			  "creation_date": "1645769809521",
-			  "number_of_replicas": "1",
-			  "uuid": "DohYKvr_SZO4KRGmbZYmTQ",
-			  "version": {
-				  "created": "7160299"
-			  }
-		  }
-	  }
-  }
+	#定义mappings属性，替换创建索引时对应的mappings属性
+	"mappings":{
+		#定义索引中包含的属性设置
+		"properties":{
+			#设置索引中包含id属性
+			"id":{
+				#当前属性可以被直接搜索
+				"type":"keyword"
+			},
+			#设置索引中包含name属性
+			"name":{
+				#当前属性是文本信息，参与分词
+				"type":"text",
+				#使用IK分词器进行分词
+				"analyzer":"ik_max_word",
+				#分词结果拷贝到all属性中
+				"copy_to":"all"
+			},
+			"type":{
+				"type":"keyword"
+			},
+			"description":{
+				"type":"text",
+				"analyzer":"ik_max_word",
+				"copy_to":"all"
+			},
+			#定义属性，用来描述多个字段的分词结果集合，当前属性可以参与查询
+			"all":{
+				"type":"text",
+				"analyzer":"ik_max_word"
+			}
+		}
+	}
 }
 ```
 
@@ -266,15 +263,30 @@ http://localhost:9200/books
 
 **有三种方式**
 
-```json
-#使用系统生成id
-POST请求	http://localhost:9200/books/_doc		
-#使用指定id
-POST请求	http://localhost:9200/books/_create/1	
-#使用指定id，不存在创建，存在更新（版本递增）
-POST请求	http://localhost:9200/books/_doc/1		
+**使用系统生成id**
 
-文档通过请求参数传递，数据格式json
+```shell
+#POST请求	
+http://localhost:9200/books/_doc
+```
+
+**使用指定id**
+
+```shell
+#POST请求	
+http://localhost:9200/books/_create/1
+```
+
+**使用指定id，不存在创建，存在更新（版本递增）**
+
+```shell
+#POST请求	
+http://localhost:9200/books/_doc/1	
+```
+
+**文档通过请求参数传递，数据格式json**
+
+```shell
 {
   "name":"springboot",
   "type":"springboot",
@@ -314,29 +326,38 @@ http://localhost:9200/books/_doc/1
 
 # 修改文档（全量更新）
 
-  ```json
-  PUT请求	http://localhost:9200/books/_doc/1
-  
-  文档通过请求参数传递，数据格式json
-  {
-      "name":"springboot",
-      "type":"springboot",
-      "description":"springboot"
-  }
-  ```
+```shell
+# PUT请求
+http://localhost:9200/books/_doc/1
+```
+
+文档通过请求参数传递，数据格式json
+
+```json
+{
+  "name":"springboot",
+  "type":"springboot",
+  "description":"springboot"
+}
+```
 
 ---
 
 # 修改文档（部分更新）
 
-```json
+```shell
 # POST请求	
 http://localhost:9200/books/_update/1
+```
 
-# 文档通过请求参数传递，数据格式json
-{			
-  "doc":{						#部分更新并不是对原始文档进行更新，而是对原始文档对象中的doc属性中的指定属性更新
-	  "name":"springboot"		#仅更新提供的属性值，未提供的属性值不参与更新操作
+文档通过请求参数传递，数据格式json
+
+```json
+{		
+  #部分更新并不是对原始文档进行更新，而是对原始文档对象中的doc属性中的指定属性更新	
+  "doc":{						
+	  #仅更新提供的属性值，未提供的属性值不参与更新操作
+	  "name":"springboot"		
   }
 }
 ```

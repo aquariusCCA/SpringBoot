@@ -23,9 +23,11 @@ MongoDB虽然是一款数据库，但是它的操作并不是使用SQL语句进�
 
 ​连接成功后在命令输入区域输入命令即可操作MongoDB。
 
+---
+
 ​创建数据库：在左侧菜单中使用右键创建，输入数据库名称即可
 
-​创建集合：在Collections上使用右键创建，输入集合名称即可，集合等同于数据库中的表的作用
+​创建集合：在 Collections 上使用右键创建，输入集合名称即可，集合等同于数据库中的表的作用
 
 ​新增文档：（文档是一种类似json格式的数据，初学者可以先把数据理解为就是json数据）	
 
@@ -65,4 +67,27 @@ db.集合名称.update(条件，{操作种类:{文档}})
 条件连接查询：		   db.集合.find({$and:[{条件1},{条件2}]})	   //等同于SQL中的and、or
 ```
 
-​有关MongoDB的基础操作就普及到这里，需要全面掌握MongoDB技术，请参看相关教程学习。
+範例：
+
+```shell
+// 查询所有
+db.getCollection('book').find({})
+// 可以简写为
+db.book.find();
+// 条件查询
+db.book.find({type: "springboot"})
+
+// 保存文档
+db.book.save({"name": "springboot", type: "springboot"})
+
+// 删除操作
+db.book.remove({type: "springboot"});
+
+// 修改操作
+// 修改满足条件的第一条数据
+db.book.update({name: "springboot"}, {$set:{name: "springboot2"}});
+// 修改满足条件的所有数据
+db.book.updateMany({name: "springboot"}, {$set:{name: "springboot2"}});
+```
+
+> 有关MongoDB的基础操作就普及到这里，需要全面掌握MongoDB技术，请参看相关教程学习。 

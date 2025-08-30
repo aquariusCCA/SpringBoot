@@ -108,4 +108,12 @@
 		- [[ES 基础操作]]
 		- [[SpringBoot 整合 ES 客户端操作]]
 
+- **整合第三方技术**
+	- [[缓存]]
+	- [[SpringBoot 内置缓存解决方案]]
+
+- **其他 Spring Boot 相關知識**
+	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
+	- [[在 Spring Boot 中發起 Http 請求 - RestTemplate]]
+
 ---

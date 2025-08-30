@@ -39,3 +39,12 @@ elasticsearch.bat
   "tagline" : "You Know, for Search"
 }
 ```
+
+> 如果有正常的`json`返回值，那么说明`es`启动正常
+
+---
+
+# 我的預設帳密
+
+user: elastic
+password: dn2FccTLlONId71*p8B*

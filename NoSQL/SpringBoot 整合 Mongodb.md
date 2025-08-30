@@ -41,11 +41,12 @@ spring:
 
 ```java
 @SpringBootTest
-class Springboot17MongodbApplicationTests {
+public class TestMongoDB {
     @Autowired
     private MongoTemplate mongoTemplate;
+
     @Test
-    void contextLoads() {
+    void saveBook() {
         Book book = new Book();
         book.setId(2);
         book.setName("springboot2");
@@ -53,6 +54,7 @@ class Springboot17MongodbApplicationTests {
         book.setDescription("springboot2");
         mongoTemplate.save(book);
     }
+
     @Test
     void find(){
         List<Book> all = mongoTemplate.findAll(Book.class);
