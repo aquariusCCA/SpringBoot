@@ -118,6 +118,10 @@
 	- [[SpringBoot 整合 Memcached 缓存]]
 	- [[SpringBoot 整合 jetcache 缓存
 
+- [[任务]]
+	- [[Quartz]]
+	- [[Task]]
+
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
 	- [[在 Spring Boot 中發起 Http 請求 - RestTemplate]]
