@@ -1,5 +1,16 @@
+#2.配置相关信息
 spring:
-  elasticsearch:
-    uris: http://localhost:9200
-    username: elastic
-    password: dn2FccTLlONId71*p8B
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: Lins860210SStar
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tbl_
+
+# 配置j2cache
+j2cache:
+  config-location: j2cache.properties

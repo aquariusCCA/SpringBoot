@@ -108,9 +108,15 @@
 		- [[ES 基础操作]]
 		- [[SpringBoot 整合 ES 客户端操作]]
 
-- **整合第三方技术**
+- **缓存**
 	- [[缓存]]
+	- [[用 HashMap 模拟一个缓存]]
 	- [[SpringBoot 内置缓存解决方案]]
+	- [[手机验证码案例]]
+	- [[SpringBoot 整合 Ehcache 缓存]]
+	- [[SpringBoot 整合 Redis 缓存]]
+	- [[SpringBoot 整合 Memcached 缓存]]
+	- [[SpringBoot 整合 jetcache 缓存
 
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
