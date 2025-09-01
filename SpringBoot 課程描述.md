@@ -126,6 +126,12 @@
 	- [[发送简单邮件]]
 	- [[发送多组件邮件（附件、复杂正文）]]
 
+- [[监控]]
+	- [[监控的意义]]
+	- [[可视化监控平台]]
+	- [[监控原理]]
+	- [[自定义监控指标]]
+
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
 	- [[在 Spring Boot 中發起 Http 請求 - RestTemplate]]
