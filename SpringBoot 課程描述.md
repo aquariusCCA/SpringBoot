@@ -122,6 +122,10 @@
 	- [[Quartz]]
 	- [[Task]]
 
+- [[邮件]]
+	- [[发送简单邮件]]
+	- [[发送多组件邮件（附件、复杂正文）]]
+
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
 	- [[在 Spring Boot 中發起 Http 請求 - RestTemplate]]

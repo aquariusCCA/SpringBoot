@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: aquarius.c.c.a@gmail.com        # 改成你的寄件帳號
+    password: uool kcne ezmm xezj     # App Password（不是一般登入密碼）
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
