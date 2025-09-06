@@ -1,5 +1,6 @@
 # 課程資料
 
+- [黑马程序员SpringBoot2全套视频教程](https://www.bilibili.com/video/BV15b4y1a7yG?spm_id_from=333.788.player.switch&vd_source=dd97ccca0358cc54d2813737943d2b54&p=160)
 - [黎明前的黑暗/Springboot2-heima](https://gitee.com/qtqiu/springboot2-heima)
 
 ---
@@ -126,14 +127,40 @@
 	- [[发送简单邮件]]
 	- [[发送多组件邮件（附件、复杂正文）]]
 
+- **消息**
+	- [[消息的概念]]
+	- [[Java 处理消息的标准规范]]
+	- [[购物订单发送手机短信案例]]
+	- [[SpringBoot 整合 ActiveMQ]] 
+	- [[SpringBoot 整合 RabbitMQ]]
+	- [[SpringBoot 整合 RocketMQ]]
+	- [[SpringBoot 整合 Kafka]]
+
 - [[监控]]
 	- [[监控的意义]]
 	- [[可视化监控平台]]
 	- [[监控原理]]
 	- [[自定义监控指标]]
 
+- **原理篇**
+	- **加載方式**
+		- [[bean 的加载方式（一）]]
+		- [[bean 的加载方式（二）]]
+		- [[bean 的加载方式（三）]]
+		- [[bean 的加载方式（四）]]
+		- [[bean 的加载方式（五）]]
+		- [[bean 的加载方式（六）]]
+		- [[bean 的加载方式（七）]]
+		- [[bean 的加载方式（八）]]
+		- [[bean 的加载方式——扩展1]]
+		- [[bean 的加载方式——扩展2]]
+		- [[bean 的加载方式——扩展3]]
+		- [[bean 的加载方式——扩展4]]
+	- [[加載控制]]
+	- [[依赖属性配置]]
+	- [[自动配置]]
+
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]
-	- [[在 Spring Boot 中發起 Http 請求 - RestTemplate]]
 
 ---

@@ -1,29 +1,13 @@
+cartoon:
+  cat:
+    name: "图多盖洛"
+    age: 5
+  mouse:
+    name: "泰菲"
+    age: 6
+
 spring:
-  # Spring Boot Admin 监控服务器端地址
-  boot:
-    admin:
-      client:
-        url: http://localhost:8080
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springboot
-    username: root
-    password: Lins860210SStar
-
-mybatis-plus:
-  global-config:
-    db-config:
-      table-prefix: tbl_		#设置所有表的通用前缀名称为tbl_
-
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:    # 全部端点的配置
-    web:
-      exposure:
-        include: "*"  # 暴露所有端点
-
-server:
-  port: 8083
-
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration
+      - org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
