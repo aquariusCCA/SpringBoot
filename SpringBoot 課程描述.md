@@ -159,6 +159,8 @@
 	- [[加載控制]]
 	- [[依赖属性配置]]
 	- [[自动配置]]
+	- [[自定义 starter]]
+
 
 - **其他 Spring Boot 相關知識**
 	- [[Json 字串和 Java Object 的轉換 - ObjectMapper]]

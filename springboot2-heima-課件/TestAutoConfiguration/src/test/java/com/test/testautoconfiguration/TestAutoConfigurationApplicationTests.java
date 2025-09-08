@@ -1,10 +1,10 @@
-package com.test.testspringboot;
+package com.test.testautoconfiguration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestSpringBootApplicationTests {
+class TestAutoConfigurationApplicationTests {
 
     @Test
     void contextLoads() {

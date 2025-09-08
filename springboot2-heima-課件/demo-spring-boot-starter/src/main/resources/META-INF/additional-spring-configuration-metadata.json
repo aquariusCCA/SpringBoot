@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "demo.name",
+      "type": "java.lang.String",
+      "description": "使用者名稱。",
+      "defaultValue": "World"
+    },
+    {
+      "name": "demo.date",
+      "type": "java.lang.String",
+      "description": "日期字串（格式 yyyy-MM-dd）。",
+      "defaultValue": "1970-01-01"
+    }
+  ],
+  "hints": [
+    {
+      "name": "demo.date",
+      "values": [
+        { "value": "2025-01-01", "description": "示例（yyyy-MM-dd）" }
+      ]
+    }
+  ]
+}
